@@ -5,7 +5,8 @@ using std::cout;
 using std::sort;
 using std::endl;
 
-int* merge(int *c, int *d, int n) {
+int* merge(int *c, int *d, int n) 
+{
     int i = 0, j = 0;
     int* b = new int[n];
     while (i < n / 2 && j < n - n / 2)
@@ -21,11 +22,13 @@ int* merge(int *c, int *d, int n) {
             j++;
         }
     }
-    while (i < n / 2) {
+    while (i < n / 2) 
+    {
         *(b + i + j) = *(c + i);
         i++;
     }
-    while (j < n - n / 2) {
+    while (j < n - n / 2) 
+    {
         *(b + i + j) = *(d + j);
         j++;
     }
@@ -46,6 +49,14 @@ int* mergeSort(int *arr, int n)
     return merge(c,d,n);
 }
 
+int* sort(int* arr, int n) 
+{
+    if (n == 0)
+        return arr;
+    else
+        return mergeSort(arr,n);
+}
+
 bool checkIsCorrect(int *first, int *second, int n)
 {
     for (int i = 0; i < n; i++) 
@@ -59,12 +70,13 @@ int main()
 {
     setlocale(LC_ALL, "Russian");
     int n = 1e5;
-    for (int i = 0; i < 10; i++) {
+    for (int i = 0; i < 10; i++) 
+    {
         int* arr = new int[n];
         srand(time(NULL));
         for (int i = 0; i < n; i++)
             arr[i] = rand();
-        int* sorted = mergeSort(arr, n);
+        int* sorted = sort(arr, n);
         sort(arr, arr + n);
 
         if (checkIsCorrect(arr, sorted, n))
